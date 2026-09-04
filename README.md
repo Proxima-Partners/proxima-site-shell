@@ -49,11 +49,13 @@ export function SiteShell({ currentPath }: { currentPath: string }) {
     <ProximaNavbar
       currentPath={currentPath}
       currentSite="partners"
+      basePath="/v1.5"
       logoSrc="/brand/proxima-sf-logo.png"
     />
     <main>{/* Site content */}</main>
     <ProximaFooter
       currentSite="partners"
+      basePath="/v1.5"
       designVersionLabel="v1.5.3 preview"
       logoSrc="/brand/proxima-partners-footer.png"
     />
@@ -62,6 +64,7 @@ export function SiteShell({ currentPath }: { currentPath: string }) {
 ```
 
 Use `currentSite="cafe"` in Proxima.Cafe. Same-site links can be intercepted through `onNavigate` and passed to the consumer router; cross-site links should retain their normal browser navigation.
+Set `basePath` for a versioned preview so copied links and new-tab navigation remain inside that release.
 
 ## Styling contract
 

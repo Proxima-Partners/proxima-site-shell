@@ -12,6 +12,7 @@ export type ProximaFooterProps = {
   policyNavigation?: ProximaDestination[]
   onNavigate?: ProximaNavigateHandler
   baseUrls?: Partial<ProximaBaseUrls>
+  basePath?: string
 }
 
 const footerNavigation: ProximaDestination[] = [
@@ -34,12 +35,13 @@ export function ProximaFooter({
   policyNavigation = footerPolicies,
   onNavigate,
   baseUrls,
+  basePath = '',
 }: ProximaFooterProps) {
   const urls = { ...defaultProximaBaseUrls, ...baseUrls }
   const home: ProximaDestination = { label: 'Home', path: '/', site: 'partners' }
   const link = (destination: ProximaDestination) => (
     <a
-      href={resolveProximaHref(destination, currentSite, urls)}
+      href={resolveProximaHref(destination, currentSite, urls, basePath)}
       onClick={(event) => onNavigate?.(event, destination)}
     >
       {destination.label}
@@ -50,7 +52,7 @@ export function ProximaFooter({
     <footer className="proxima-shell-footer">
       <div className="proxima-shell-footer__identity">
         <a
-          href={resolveProximaHref(home, currentSite, urls)}
+          href={resolveProximaHref(home, currentSite, urls, basePath)}
           className="proxima-shell-footer__brand"
           aria-label="Proxima SF home"
           onClick={(event) => onNavigate?.(event, home)}

@@ -31,6 +31,10 @@ test('uses relative URLs on the current site and absolute URLs across sites', ()
   assert.equal(resolveProximaHref(mission, 'cafe'), 'https://liveproxima.org/about#mission')
 })
 
+test('keeps same-site links inside a versioned preview base path', () => {
+  assert.equal(resolveProximaHref({ label: 'Impact', path: '/impact', site: 'partners' }, 'partners', undefined, '/v1.3'), '/v1.3/impact')
+})
+
 test('marks only same-site destinations as current', () => {
   const impact = defaultProximaNavigation.groups[0].destinations[0]
   const blog = defaultProximaNavigation.groups[0].destinations[1]

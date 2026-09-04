@@ -34,8 +34,9 @@ export function resolveProximaHref(
   destination: ProximaDestination,
   currentSite: ProximaSite,
   baseUrls: ProximaBaseUrls = defaultProximaBaseUrls,
+  currentSiteBasePath = '',
 ) {
-  const base = destination.site === currentSite ? '' : baseUrls[destination.site]
+  const base = destination.site === currentSite ? currentSiteBasePath : baseUrls[destination.site]
   return `${base}${destination.path}${destination.suffix ?? ''}`
 }
 

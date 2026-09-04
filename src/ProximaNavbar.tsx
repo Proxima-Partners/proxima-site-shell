@@ -13,6 +13,7 @@ export type ProximaNavbarProps = {
   navigation?: ProximaNavigation
   onNavigate?: ProximaNavigateHandler
   baseUrls?: Partial<ProximaBaseUrls>
+  basePath?: string
 }
 
 function CaretIcon() {
@@ -35,6 +36,7 @@ export function ProximaNavbar({
   navigation = defaultProximaNavigation,
   onNavigate,
   baseUrls,
+  basePath = '',
 }: ProximaNavbarProps) {
   const urls = { ...defaultProximaBaseUrls, ...baseUrls }
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -165,7 +167,7 @@ export function ProximaNavbar({
     return (
       <a
         className={`${className}${active ? ' is-active' : ''}`.trim()}
-        href={resolveProximaHref(destination, currentSite, urls)}
+        href={resolveProximaHref(destination, currentSite, urls, basePath)}
         aria-current={active ? 'page' : undefined}
         onClick={(event) => follow(event, destination)}
       >
@@ -230,7 +232,7 @@ export function ProximaNavbar({
   return (
     <header className="proxima-shell-navbar" ref={headerRef}>
       <a
-        href={resolveProximaHref(navigation.home, currentSite, urls)}
+        href={resolveProximaHref(navigation.home, currentSite, urls, basePath)}
         className="proxima-shell-navbar__brand"
         aria-label="Proxima SF home"
         onClick={(event) => follow(event, navigation.home)}
