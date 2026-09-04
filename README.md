@@ -4,7 +4,7 @@ Shared, versioned navbar and footer components for LiveProxima and Proxima.Cafe.
 
 ## Status
 
-`0.1.0` is the initial extraction of the navbar and footer approved for the LiveProxima v1.5.3 preview. This repository is private and the package is not yet published to a registry. Publishing and consumer adoption are separate approval gates.
+`0.1.0` is the initial extraction of the navbar and footer approved for the LiveProxima v1.5.3 preview. The public GitHub repository is the package source; consumers pin an immutable commit until registry publication is separately approved.
 
 ## What the package owns
 
@@ -25,7 +25,11 @@ npm test
 npm pack
 ```
 
-Install the resulting tarball in a consumer for an integration check. Pin exact released versions once a package registry is selected.
+Consumers can install an immutable GitHub commit directly. The `prepare` lifecycle builds `dist` during installation:
+
+```sh
+npm install github:Proxima-Partners/proxima-site-shell#<commit-sha>
+```
 
 ## Usage
 
@@ -69,6 +73,6 @@ Navbar labels share a single `1rem` size. Give Now uses the approved 6px radius,
 
 - Build-time package dependency only; do not load shell code from a runtime CDN.
 - Consumers pin exact package versions.
-- Historical locked site releases remain self-contained and unchanged.
+- Historical site releases remain self-contained after their approved shell migration.
 - Package publication, consumer upgrades, staging, and production are independent approvals.
 - Responsive acceptance checks use Microsoft Edge.
