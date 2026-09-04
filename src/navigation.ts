@@ -12,7 +12,7 @@ export const defaultProximaNavigation: ProximaNavigation = {
       id: 'stories',
       label: 'Stories',
       destinations: [
-        { label: 'Impact', path: '/impact', site: 'partners' },
+        { label: 'Impact', path: '/', site: 'cafe' },
         { label: 'Blog', path: '/blog', site: 'cafe' },
         { label: 'Articles', path: '/articles', site: 'cafe' },
       ],

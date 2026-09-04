@@ -26,21 +26,22 @@ test('uses relative URLs on the current site and absolute URLs across sites', ()
   const blog = defaultProximaNavigation.groups[0].destinations[1]
   const mission = defaultProximaNavigation.groups[1].destinations[0]
 
-  assert.equal(resolveProximaHref(impact, 'partners'), '/impact')
+  assert.equal(resolveProximaHref(impact, 'partners'), 'https://proxima.cafe/')
+  assert.equal(resolveProximaHref(impact, 'cafe'), '/')
   assert.equal(resolveProximaHref(blog, 'partners'), 'https://proxima.cafe/blog')
   assert.equal(resolveProximaHref(mission, 'cafe'), 'https://liveproxima.org/about#mission')
 })
 
 test('keeps same-site links inside a versioned preview base path', () => {
-  assert.equal(resolveProximaHref({ label: 'Impact', path: '/impact', site: 'partners' }, 'partners', undefined, '/v1.3'), '/v1.3/impact')
+  assert.equal(resolveProximaHref({ label: 'Home', path: '/', site: 'partners' }, 'partners', undefined, '/v1.3'), '/v1.3/')
 })
 
 test('marks only same-site destinations as current', () => {
   const impact = defaultProximaNavigation.groups[0].destinations[0]
   const blog = defaultProximaNavigation.groups[0].destinations[1]
 
-  assert.equal(proximaDestinationIsCurrent(impact, 'partners', '/impact'), true)
-  assert.equal(proximaDestinationIsCurrent(impact, 'partners', '/impact/report'), true)
+  assert.equal(proximaDestinationIsCurrent(impact, 'partners', '/impact'), false)
+  assert.equal(proximaDestinationIsCurrent(impact, 'cafe', '/'), true)
   assert.equal(proximaDestinationIsCurrent(blog, 'partners', '/blog'), false)
   assert.equal(proximaDestinationIsCurrent(blog, 'cafe', '/blog'), true)
 })
