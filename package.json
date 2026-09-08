@@ -6,14 +6,21 @@
   "type": "module",
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/styles.css",
+    "./webflow": {
+      "types": "./dist/webflow.d.ts",
+      "import": "./dist/webflow.js"
+    },
+    "./webflow/styles.css": "./dist/webflow/styles.css",
+    "./webflow/manifest.json": "./dist/webflow/manifest.json"
   },
   "sideEffects": [
     "**/*.css"

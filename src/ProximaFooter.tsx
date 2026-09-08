@@ -1,7 +1,13 @@
 'use client'
 
 import type { ProximaBaseUrls, ProximaDestination, ProximaNavigateHandler, ProximaSite } from './types.js'
-import { defaultProximaBaseUrls, resolveProximaHref } from './navigation.js'
+import {
+  defaultProximaBaseUrls,
+  defaultProximaFooterNavigation,
+  defaultProximaNavigation,
+  defaultProximaPolicyNavigation,
+  resolveProximaHref,
+} from './navigation.js'
 
 export type ProximaFooterProps = {
   currentSite: ProximaSite
@@ -15,30 +21,19 @@ export type ProximaFooterProps = {
   basePath?: string
 }
 
-const footerNavigation: ProximaDestination[] = [
-  { label: 'Contact', path: '/contact', site: 'partners', suffix: '#contact-form' },
-  { label: 'Leadership', path: '/about', site: 'partners', suffix: '#meet-the-founders' },
-  { label: 'Donation', path: '/give', site: 'partners' },
-]
-
-const footerPolicies: ProximaDestination[] = [
-  { label: 'Privacy Policy', path: '/privacy-policy', site: 'partners' },
-  { label: 'Messaging Policy', path: '/messaging-policy', site: 'partners' },
-]
-
 export function ProximaFooter({
   currentSite,
   designVersionLabel,
   logoSrc,
   logoAlt = '',
-  navigation = footerNavigation,
-  policyNavigation = footerPolicies,
+  navigation = defaultProximaFooterNavigation,
+  policyNavigation = defaultProximaPolicyNavigation,
   onNavigate,
   baseUrls,
   basePath = '',
 }: ProximaFooterProps) {
   const urls = { ...defaultProximaBaseUrls, ...baseUrls }
-  const home: ProximaDestination = { label: 'Home', path: '/', site: 'partners' }
+  const home = defaultProximaNavigation.home
   const link = (destination: ProximaDestination) => (
     <a
       href={resolveProximaHref(destination, currentSite, urls, basePath)}

@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import {
+  defaultProximaFooterNavigation,
   defaultProximaNavigation,
+  defaultProximaPolicyNavigation,
   proximaDestinationIsCurrent,
   resolveProximaHref,
 } from '../dist/index.js'
@@ -19,6 +21,14 @@ test('ships the approved shared information architecture', () => {
     ],
   )
   assert.equal(defaultProximaNavigation.primaryAction.label, 'GIVE NOW')
+  assert.deepEqual(
+    defaultProximaFooterNavigation.map((destination) => destination.label),
+    ['Contact', 'Leadership', 'Donation'],
+  )
+  assert.deepEqual(
+    defaultProximaPolicyNavigation.map((destination) => destination.label),
+    ['Privacy Policy', 'Messaging Policy'],
+  )
 })
 
 test('uses relative URLs on the current site and absolute URLs across sites', () => {

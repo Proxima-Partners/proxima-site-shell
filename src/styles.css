@@ -74,7 +74,7 @@
   white-space: nowrap;
 }
 
-.proxima-shell-desktop-nav > span {
+.proxima-shell-desktop-nav > .proxima-shell-dropdown {
   display: flex;
   align-self: stretch;
 }
@@ -478,7 +478,7 @@
     background: transparent;
   }
 
-  .proxima-shell-mobile-nav > span {
+  .proxima-shell-mobile-nav > .proxima-shell-mobile-group {
     display: block;
   }
 

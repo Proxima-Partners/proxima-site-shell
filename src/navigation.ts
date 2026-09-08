@@ -30,6 +30,17 @@ export const defaultProximaNavigation: ProximaNavigation = {
   primaryAction: { label: 'GIVE NOW', path: '/give', site: 'partners' },
 }
 
+export const defaultProximaFooterNavigation: ProximaDestination[] = [
+  { label: 'Contact', path: '/contact', site: 'partners', suffix: '#contact-form' },
+  { label: 'Leadership', path: '/about', site: 'partners', suffix: '#meet-the-founders' },
+  { label: 'Donation', path: '/give', site: 'partners' },
+]
+
+export const defaultProximaPolicyNavigation: ProximaDestination[] = [
+  { label: 'Privacy Policy', path: '/privacy-policy', site: 'partners' },
+  { label: 'Messaging Policy', path: '/messaging-policy', site: 'partners' },
+]
+
 export function resolveProximaHref(
   destination: ProximaDestination,
   currentSite: ProximaSite,

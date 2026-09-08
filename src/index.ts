@@ -4,7 +4,9 @@ export { ProximaNavbar } from './ProximaNavbar.js'
 export type { ProximaNavbarProps } from './ProximaNavbar.js'
 export {
   defaultProximaBaseUrls,
+  defaultProximaFooterNavigation,
   defaultProximaNavigation,
+  defaultProximaPolicyNavigation,
   proximaDestinationIsCurrent,
   resolveProximaHref,
 } from './navigation.js'
