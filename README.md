@@ -16,6 +16,23 @@ The repository's current `main` branch is documentation-only. The functional pac
 
 Do not move a consumer to `main`, a branch name, or an unversioned `latest` reference.
 
+## Verified consumer matrix
+
+| Consumer | Integration | Current shell | Update policy |
+| --- | --- | --- | --- |
+| Partners v1.3 | Compiled historical artifact | `2e5e16b33c0014d7da93b401956639096521b070` | Locked; never rebuild during normal shell updates |
+| Partners v1.4 | Compiled historical artifact | `2e5e16b33c0014d7da93b401956639096521b070` | Locked; never rebuild during normal shell updates |
+| Partners v1.5 | Root Vite/Preact build | `77038f98ae7cb4e1c831c786c472e3577e0912f2` | Active mutable release |
+| Partners v1.6 / v1.6.3 | Release-specific React adapter and generated static artifact | `77038f98ae7cb4e1c831c786c472e3577e0912f2` | Active mutable release |
+| Partners v1.6.4 | Isolated Next.js adapter | `77038f98ae7cb4e1c831c786c472e3577e0912f2` | Active package consumer |
+| Partners v1.8.0 | Isolated Next.js adapter | `77038f98ae7cb4e1c831c786c472e3577e0912f2` | Draft consumer; currently missing from the consumer update manifest |
+| Proxima.Cafe | Next.js adapter in its own repository | `77038f98ae7cb4e1c831c786c472e3577e0912f2` | Independently reviewed and released |
+| Partners Webflow site | Native Webflow adapter generated from the shared contract | Record an explicit shell artifact version | Independently reviewed and published |
+
+Partners v1.7 does not consume the package. Partners v1.9 is a native Framer reconstruction rather than a package consumer.
+
+The Partners updater currently verifies the root v1.5/v1.6 package and v1.6.4. Before the next shell upgrade, either add v1.8.0 to `config/site-shell-consumers.json` or explicitly classify it as frozen/unaffected. Silent omission is not acceptable because it allows compatible-looking versions to drift.
+
 ## Recommended architecture
 
 The two websites have different application architectures, so the shared shell should be a source-of-truth contract with consumer-specific adapters.
