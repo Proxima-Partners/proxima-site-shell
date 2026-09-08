@@ -62,3 +62,10 @@ test('build emits a machine-readable Webflow artifact manifest', async () => {
     assert.equal(createHash('sha256').update(contents).digest('hex'), artifact.sha256)
   }
 })
+
+test('shared styles support both React wrappers and direct Webflow groups', async () => {
+  const styles = await readFile(new URL('../dist/styles.css', import.meta.url), 'utf8')
+
+  assert.match(styles, /\.proxima-shell-desktop-nav > span,\s*\.proxima-shell-desktop-nav > \.proxima-shell-dropdown/)
+  assert.match(styles, /\.proxima-shell-mobile-nav > span,\s*\.proxima-shell-mobile-nav > \.proxima-shell-mobile-group/)
+})
