@@ -6,6 +6,7 @@ All notable site-shell changes are recorded here. A release entry identifies its
 
 Brand System: v2.2.1 (unchanged).
 
+- `exports` adds a `default` condition, so tools that resolve through `require` (for example tsx in tests) load the package.
 - Phone (640px and below): the header's Give menu opens as a full-width sheet under the header, as on main site v1.0. Gift prompt menus are unchanged.
 
 Consumer impact: CSS only. Rollback: 0.2.0 at `932f614`.
