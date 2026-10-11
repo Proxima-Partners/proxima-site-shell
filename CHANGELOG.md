@@ -2,7 +2,7 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
-## 0.2.0 - unreleased
+## 0.2.0 - 2026-10-10
 
 Brand System: v2.2.1 (`10-Site-Chrome/navigation.json`).
 
