@@ -38,6 +38,8 @@ export function ProximaFooter({ currentApp, assetBase = '', versionLabel, onNavi
           {(footer.policies as readonly ProximaLink[]).map((link) => (
             <ShellLink key={link.label} link={link} currentApp={currentApp} onNavigate={onNavigate} />
           ))}
+          {/* The quiet footer giving touchpoint (Brand System 2.2.1). */}
+          <ShellLink link={footer.give as ProximaLink} currentApp={currentApp} className="proxima-shell-footer__give" onNavigate={onNavigate} />
         </nav>
         <p className="proxima-shell-footer__meta">
           {proximaFooterMeta()}

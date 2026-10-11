@@ -73,6 +73,7 @@ test('the header and footer render the same markup in both apps, stamped with bo
     assert.match(html, /href="\/cafe"( aria-current="page")?>Stories</)
     assert.match(html, /href="\/#about">Who We Are</)
     assert.match(html, /aria-label="Proxima San Francisco, home"/)
+    assert.match(html, /<a class="proxima-shell-footer__give" href="\/give">Give<\/a><\/nav>/, 'quiet Give link after the policy links (2.2.1)')
     assert.equal((html.match(/target="_blank"/g) ?? []).length, 4, 'only the two external Give items and the two badges open a new tab')
     assert.match(html, new RegExp(`© ${new Date().getFullYear()} Proxima Partners, Inc.`))
     assert.doesNotMatch(html, /Proxima Cafe/, 'the cafe is named only in its section bar')

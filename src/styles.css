@@ -219,6 +219,7 @@
 .proxima-shell-footer__policies a { min-height: var(--proxima-touch-target-min); display: inline-flex; align-items: center; color: var(--proxima-color-black); text-underline-offset: 0.2em; }
 .proxima-shell-footer__policies a:hover,
 .proxima-shell-footer__policies a:focus-visible { color: var(--proxima-color-teal); }
+.proxima-shell-footer__policies .proxima-shell-footer__give { font-weight: 600; color: var(--proxima-color-teal); }
 .proxima-shell-footer__meta { width: 100%; padding-top: var(--proxima-space-2); border-top: 1px solid var(--proxima-color-grey); }
 .proxima-shell-footer__meta span { margin-inline: 0.45rem; }
 

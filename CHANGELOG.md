@@ -4,14 +4,14 @@ All notable site-shell changes are recorded here. A release entry identifies its
 
 ## 0.2.0 - unreleased
 
-Brand System: v2.2.0 (`10-Site-Chrome/navigation.json`).
+Brand System: v2.2.1 (`10-Site-Chrome/navigation.json`).
 
 Breaking. The shell now delivers the Brand System's header and footer for every page at liveproxima.org, with the cafe served at `/cafe`.
 
 - **Content:** comes only from the Brand System release, mirrored into `./brand` (`brand:sync`, `brand:check`, `brand.lock.json`) and generated at build. Nothing is typed by hand.
 - **Header:** the lockup, Who We Are, Stories (to `/cafe`) and the Give menu with the six ways to give (FB-022, FB-024). Rebuilt from main site v1.0's header and Give menu. The Home link, the Stories and About dropdowns, "GIVE NOW" and the mobile dialog are gone.
 - **New components:** `ProximaSectionBar` for the cafe (Proxima Cafe, Blog, Articles, Interviews). The cafe is named only there. `ProximaGiveMenu` is exported for gift prompts.
-- **Footer:** v1.0's footer: details, DAF and Candid badges, policy links and the meta line.
+- **Footer:** v1.0's footer (details, DAF and Candid badges, policy links, meta line), plus the quiet Teal semibold Give link after the policy links (Brand System 2.2.1).
 - **Links:** root-relative on liveproxima.org in both apps, no more cross-domain URLs. `onNavigate` receives `{ href, sameApp, appPath }` so an app can route its own links. External links open a new tab; nothing else does.
 - **Styles:** Brand System tokens only, under the `proxima-shell-` namespace. `brand:check` fails on any off-palette color. The pre-2.0 colors and Noto Sans are removed.
 - **Version stamps:** the header and footer carry `data-proxima-shell-version` and `data-proxima-brand-version`.
