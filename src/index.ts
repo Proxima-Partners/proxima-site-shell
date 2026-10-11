@@ -1,20 +1,24 @@
+export { ProximaHeader } from './ProximaHeader.js'
+export type { ProximaHeaderProps } from './ProximaHeader.js'
+export { ProximaGiveMenu } from './ProximaGiveMenu.js'
+export type { ProximaGiveMenuProps } from './ProximaGiveMenu.js'
+export { ProximaSectionBar } from './ProximaSectionBar.js'
+export type { ProximaSectionBarProps } from './ProximaSectionBar.js'
 export { ProximaFooter } from './ProximaFooter.js'
 export type { ProximaFooterProps } from './ProximaFooter.js'
-export { ProximaNavbar } from './ProximaNavbar.js'
-export type { ProximaNavbarProps } from './ProximaNavbar.js'
+export { shellVersion } from './chrome.generated.js'
 export {
-  defaultProximaBaseUrls,
-  defaultProximaFooterNavigation,
-  defaultProximaNavigation,
-  defaultProximaPolicyNavigation,
-  proximaDestinationIsCurrent,
-  resolveProximaHref,
+  brandVersion,
+  chrome,
+  proximaApps,
+  proximaFooterMeta,
+  proximaLinkIsCurrent,
+  resolveProximaLink,
 } from './navigation.js'
 export type {
-  ProximaBaseUrls,
-  ProximaDestination,
+  ProximaApp,
+  ProximaHref,
+  ProximaLink,
   ProximaNavigateHandler,
-  ProximaNavigation,
-  ProximaNavigationGroup,
-  ProximaSite,
+  ProximaResolvedLink,
 } from './types.js'

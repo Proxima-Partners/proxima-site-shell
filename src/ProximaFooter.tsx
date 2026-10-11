@@ -1,85 +1,49 @@
 'use client'
 
-import type { ProximaBaseUrls, ProximaDestination, ProximaNavigateHandler, ProximaSite } from './types.js'
-import {
-  defaultProximaBaseUrls,
-  defaultProximaFooterNavigation,
-  defaultProximaNavigation,
-  defaultProximaPolicyNavigation,
-  resolveProximaHref,
-} from './navigation.js'
+import { ShellLink } from './ShellLink.js'
+import { brandVersion, chrome, proximaFooterMeta } from './navigation.js'
+import { shellVersion } from './chrome.generated.js'
+import type { ProximaApp, ProximaLink, ProximaNavigateHandler } from './types.js'
 
 export type ProximaFooterProps = {
-  currentSite: ProximaSite
-  designVersionLabel: string
-  logoSrc: string
-  logoAlt?: string
-  navigation?: ProximaDestination[]
-  policyNavigation?: ProximaDestination[]
+  currentApp: ProximaApp
+  /** Base URL where the app serves its own copy of the footer badge images (the DAF badge path in the release is relative to it). Defaults to the app root. */
+  assetBase?: string
+  /** Optional site version label after the meta line, for example "v1.0". Nothing else is site-specific. */
+  versionLabel?: string
   onNavigate?: ProximaNavigateHandler
-  baseUrls?: Partial<ProximaBaseUrls>
-  basePath?: string
 }
 
-export function ProximaFooter({
-  currentSite,
-  designVersionLabel,
-  logoSrc,
-  logoAlt = '',
-  navigation = defaultProximaFooterNavigation,
-  policyNavigation = defaultProximaPolicyNavigation,
-  onNavigate,
-  baseUrls,
-  basePath = '',
-}: ProximaFooterProps) {
-  const urls = { ...defaultProximaBaseUrls, ...baseUrls }
-  const home = defaultProximaNavigation.home
-  const link = (destination: ProximaDestination) => (
-    <a
-      href={resolveProximaHref(destination, currentSite, urls, basePath)}
-      onClick={(event) => onNavigate?.(event, destination)}
-    >
-      {destination.label}
-    </a>
-  )
-
+// The footer for every page at liveproxima.org (Brand System 10-Site-Chrome): details, the DAF and Candid
+// badges, the policy links and the meta line.
+export function ProximaFooter({ currentApp, assetBase = '', versionLabel, onNavigate }: ProximaFooterProps) {
+  const footer = chrome.footer
+  const image = (src: string) => (/^https?:\/\//.test(src) ? src : `${assetBase}${src}`)
   return (
-    <footer className="proxima-shell-footer">
-      <div className="proxima-shell-footer__identity">
-        <a
-          href={resolveProximaHref(home, currentSite, urls, basePath)}
-          className="proxima-shell-footer__brand"
-          aria-label="Proxima SF home"
-          onClick={(event) => onNavigate?.(event, home)}
-        >
-          <img src={logoSrc} width={4083} height={538} alt={logoAlt} />
-        </a>
-        <p className="proxima-shell-footer__tagline">Coaching the Spiritually Curious</p>
-        <address>1875 Mission St Ste 103 #425<br />San Francisco, CA 94103</address>
-        <p>EIN 33-4450216</p>
-        <small>© 2026 Proxima Partners · A San Francisco nonprofit · {designVersionLabel}</small>
+    <footer className="proxima-shell-footer" data-proxima-shell-version={shellVersion} data-proxima-brand-version={brandVersion}>
+      <div className="proxima-shell-footer__inner">
+        <div className="proxima-shell-footer__details">
+          <p>{footer.details[0]}</p>
+          <address>{footer.details[1]}</address>
+          {footer.details.slice(2).map((line) => <p key={line}>{line}</p>)}
+        </div>
+        <div className="proxima-shell-footer__badges">
+          {footer.badges.map((badge) => (
+            <ShellLink key={badge.label} link={badge as ProximaLink} currentApp={currentApp} className="proxima-shell-footer__badge" ariaLabel={badge.label} onNavigate={onNavigate}>
+              <img alt={badge.alt} src={image(badge.image)} width={76} height={76} loading="lazy" />
+            </ShellLink>
+          ))}
+        </div>
+        <nav className="proxima-shell-footer__policies" aria-label="Policies">
+          {(footer.policies as readonly ProximaLink[]).map((link) => (
+            <ShellLink key={link.label} link={link} currentApp={currentApp} onNavigate={onNavigate} />
+          ))}
+        </nav>
+        <p className="proxima-shell-footer__meta">
+          {proximaFooterMeta()}
+          {versionLabel ? <><span aria-hidden="true">|</span>{versionLabel}</> : null}
+        </p>
       </div>
-      <a
-        className="proxima-shell-footer__candid"
-        aria-label="View Proxima Partners Inc on Candid"
-        href="https://app.candid.org/profile/16402856/proxima-partners-inc-33-4450216/?pkId=e146c914-9d6d-4bf0-9f4f-5819149f17d5"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <img
-          alt="Candid nonprofit transparency seal"
-          src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/16402856/svg"
-          width="76"
-          height="76"
-          loading="lazy"
-        />
-      </a>
-      <nav className="proxima-shell-footer__links" aria-label="Footer navigation">
-        {navigation.map((destination) => <span key={`${destination.site}-${destination.path}-${destination.suffix ?? ''}`}>{link(destination)}</span>)}
-      </nav>
-      <nav className="proxima-shell-footer__policies" aria-label="Policies">
-        {policyNavigation.map((destination) => <span key={`${destination.site}-${destination.path}-${destination.suffix ?? ''}`}>{link(destination)}</span>)}
-      </nav>
     </footer>
   )
 }

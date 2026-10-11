@@ -1,62 +1,34 @@
-import type { ProximaBaseUrls, ProximaDestination, ProximaNavigation, ProximaSite } from './types.js'
+import { brandVersion, chrome } from './chrome.generated.js'
+import type { ProximaApp, ProximaHref, ProximaLink, ProximaResolvedLink } from './types.js'
 
-export const defaultProximaBaseUrls: ProximaBaseUrls = {
-  partners: 'https://liveproxima.org',
-  cafe: 'https://proxima.cafe',
+// The header and footer come only from the Brand System release mirrored in ./brand
+// (10-Site-Chrome/navigation.json). Nothing here is typed by hand.
+export { brandVersion, chrome }
+
+export const proximaApps = chrome.apps as Record<ProximaApp, { basePath: string }>
+
+const appUrl = (app: ProximaApp, path: string) => {
+  const base = proximaApps[app].basePath
+  return base && path === '/' ? base : `${base}${path}`
 }
 
-export const defaultProximaNavigation: ProximaNavigation = {
-  home: { label: 'Home', path: '/', site: 'partners' },
-  groups: [
-    {
-      id: 'stories',
-      label: 'Stories',
-      destinations: [
-        { label: 'Impact', path: '/', site: 'cafe' },
-        { label: 'Blog', path: '/blog', site: 'cafe' },
-        { label: 'Articles', path: '/articles', site: 'cafe' },
-      ],
-    },
-    {
-      id: 'about',
-      label: 'About',
-      destinations: [
-        { label: 'Mission', path: '/about', site: 'partners', suffix: '#mission' },
-        { label: 'Leadership', path: '/about', site: 'partners', suffix: '#meet-the-founders' },
-        { label: 'Contact', path: '/contact', site: 'partners' },
-      ],
-    },
-  ],
-  primaryAction: { label: 'GIVE NOW', path: '/give', site: 'partners' },
+/** Root-relative on liveproxima.org for both apps, so moving between the main site and the cafe never changes the domain. */
+export function resolveProximaLink(link: ProximaLink, currentApp: ProximaApp): ProximaResolvedLink {
+  const h: ProximaHref = link.href
+  if ('external' in h) return { link, href: h.external, sameApp: false }
+  if ('fundraiseUpForm' in h) return { link, href: `?form=${h.fundraiseUpForm}`, sameApp: false }
+  const href = appUrl(h.app, h.path)
+  return h.app === currentApp ? { link, href, sameApp: true, appPath: h.path } : { link, href, sameApp: false }
 }
 
-export const defaultProximaFooterNavigation: ProximaDestination[] = [
-  { label: 'Contact', path: '/contact', site: 'partners', suffix: '#contact-form' },
-  { label: 'Leadership', path: '/about', site: 'partners', suffix: '#meet-the-founders' },
-  { label: 'Donation', path: '/give', site: 'partners' },
-]
-
-export const defaultProximaPolicyNavigation: ProximaDestination[] = [
-  { label: 'Privacy Policy', path: '/privacy-policy', site: 'partners' },
-  { label: 'Messaging Policy', path: '/messaging-policy', site: 'partners' },
-]
-
-export function resolveProximaHref(
-  destination: ProximaDestination,
-  currentSite: ProximaSite,
-  baseUrls: ProximaBaseUrls = defaultProximaBaseUrls,
-  currentSiteBasePath = '',
-) {
-  const base = destination.site === currentSite ? currentSiteBasePath : baseUrls[destination.site]
-  return `${base}${destination.path}${destination.suffix ?? ''}`
+/** currentPath is the path inside the current app, without its basePath (Next.js usePathname()). */
+export function proximaLinkIsCurrent(link: ProximaLink, currentApp: ProximaApp, currentPath: string) {
+  const h = link.href
+  if (!('app' in h) || h.path.includes('#')) return false
+  if (h.app !== currentApp) return false
+  if (h.path === '/') return currentPath === '/'
+  return currentPath === h.path || currentPath.startsWith(`${h.path}/`)
 }
 
-export function proximaDestinationIsCurrent(
-  destination: ProximaDestination,
-  currentSite: ProximaSite,
-  currentPath: string,
-) {
-  if (destination.site !== currentSite) return false
-  if (destination.path === '/') return currentPath === '/'
-  return currentPath === destination.path || currentPath.startsWith(`${destination.path}/`)
-}
+/** "© 2026 Proxima Partners, Inc." from the release's meta line. */
+export const proximaFooterMeta = (year = new Date().getFullYear()) => chrome.footer.meta.replace('{year}', String(year))

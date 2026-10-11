@@ -1,11 +1,13 @@
 {
   "name": "@proxima/site-shell",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Shared Proxima navigation and footer components",
+  "description": "Shared Proxima header, Give menu, section bar and footer for every page at liveproxima.org, built from the Brand System release",
   "type": "module",
   "files": [
     "dist",
+    "brand",
+    "brand.lock.json",
     "README.md",
     "CHANGELOG.md"
   ],
@@ -14,13 +16,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles.css": "./dist/styles.css",
-    "./webflow": {
-      "types": "./dist/webflow.d.ts",
-      "import": "./dist/webflow.js"
-    },
-    "./webflow/styles.css": "./dist/webflow/styles.css",
-    "./webflow/manifest.json": "./dist/webflow/manifest.json"
+    "./styles.css": "./dist/styles.css"
   },
   "sideEffects": [
     "**/*.css"
@@ -28,15 +24,20 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "prepare": "npm run build",
-    "test": "npm run build && node --test test/*.test.mjs",
+    "brand:sync": "node scripts/sync-brand.mjs",
+    "brand:check": "node scripts/check-brand.mjs",
+    "test": "npm run build && node scripts/check-brand.mjs && node --test test/*.test.mjs",
     "pack:check": "npm pack --dry-run"
   },
   "peerDependencies": {
-    "react": ">=18"
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.3.0",
     "react": "^19.2.8",
+    "react-dom": "^19.3.0",
     "typescript": "~6.0.2"
   },
   "engines": {
