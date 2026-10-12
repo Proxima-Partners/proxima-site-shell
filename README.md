@@ -56,7 +56,7 @@ export function Chrome({ children }: { children: React.ReactNode }) {
 
 - The main site uses `currentApp="main"`, no section bar, and may pass `versionLabel="v1.0"` to the footer.
 - `ProximaGiveMenu` is exported for gift prompts lower on a page (`variant="prompt"`, optional `label`).
-- The Give menu's "Give securely online" and "Tributes" items are `?form=` links. Every app that shows the header must load the Fundraise Up loader so they open checkout in place.
+- The Give menu's "Give securely online" item is a `?form=` link. Every app that shows the header must load the Fundraise Up loader so they open checkout in place.
 - The header and footer carry `data-proxima-shell-version` and `data-proxima-brand-version`, so a check on the live site can confirm both apps match.
 - Optional CSS hooks: `--proxima-shell-width`, `--proxima-shell-sans` (for example the app's `next/font` variable), `--proxima-shell-header-height`.
 

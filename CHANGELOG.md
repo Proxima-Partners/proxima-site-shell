@@ -2,6 +2,14 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.3.0 - 2026-10-11
+
+Brand System: v2.3.0 (`10-Site-Chrome/navigation.json`).
+
+- Give menu: "Tributes" is removed; "Give cryptocurrency" ("Donate cryptocurrency securely to Proxima.") is added last and goes to `/give#crypto` on the main site, in the same tab (Mike, 2026-10-11).
+
+Consumer impact: the Give menu's items change (an app reading `chrome.header.give.items` no longer finds Tributes); no prop, markup-structure or CSS changes. The main site serves `#crypto` from v1.0, so the cafe adopts 0.3.0 together with the main site v1.0 launch. Rollback: 0.2.2 at `cd60b86`.
+
 ## 0.2.2 - 2026-10-11
 
 Brand System: v2.2.2 (`10-Site-Chrome/navigation.json`).

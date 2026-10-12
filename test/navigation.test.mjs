@@ -54,6 +54,14 @@ test('Fundraise Up and external links are never handed to an app router', () => 
   assert.deepEqual([resolveProximaLink(daf, 'cafe').href, resolveProximaLink(daf, 'cafe').sameApp], ['/give#daf', false])
 })
 
+test('the Give menu has Give cryptocurrency and no Tributes (Brand System 2.3.0)', () => {
+  const labels = chrome.header.give.items.map((item) => item.label)
+  assert.equal(labels.includes('Tributes'), false)
+  const crypto = chrome.header.give.items.find((item) => item.label === 'Give cryptocurrency')
+  assert.equal(crypto.description, 'Donate cryptocurrency securely to Proxima.')
+  assert.equal(resolveProximaLink(crypto, 'cafe').href, '/give#crypto')
+})
+
 test('marks the current page only inside its own app', () => {
   const blog = chrome.sectionBars.cafe.items.find((link) => link.label === 'Blog')
   assert.equal(proximaLinkIsCurrent(blog, 'cafe', '/blog'), true)
