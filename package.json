@@ -1,6 +1,6 @@
 {
   "name": "@proxima/site-shell",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "description": "Shared Proxima header, Give menu, section bar and footer for every page at liveproxima.org, built from the Brand System release",
   "type": "module",

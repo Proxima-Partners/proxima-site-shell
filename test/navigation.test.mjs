@@ -45,10 +45,13 @@ test('links stay on liveproxima.org: root-relative in both apps, cafe under /caf
 })
 
 test('Fundraise Up and external links are never handed to an app router', () => {
-  const [online, daf] = chrome.header.give.items
+  const [online, daf, , stock] = chrome.header.give.items
   assert.deepEqual([resolveProximaLink(online, 'cafe').href, resolveProximaLink(online, 'cafe').sameApp], ['?form=FUNYXMNPKXG', false])
-  assert.equal(resolveProximaLink(daf, 'main').sameApp, false)
-  assert.match(resolveProximaLink(daf, 'main').href, /^https:\/\/donatestock\.com\//)
+  assert.equal(resolveProximaLink(stock, 'main').sameApp, false)
+  assert.match(resolveProximaLink(stock, 'main').href, /^https:\/\/donatestock\.com\//)
+  // Brand System 2.2.2: DAF goes to the main site's Give page DAF section.
+  assert.deepEqual([resolveProximaLink(daf, 'main').href, resolveProximaLink(daf, 'main').sameApp], ['/give#daf', true])
+  assert.deepEqual([resolveProximaLink(daf, 'cafe').href, resolveProximaLink(daf, 'cafe').sameApp], ['/give#daf', false])
 })
 
 test('marks the current page only inside its own app', () => {
@@ -74,7 +77,8 @@ test('the header and footer render the same markup in both apps, stamped with bo
     assert.match(html, /href="\/#about">Who We Are</)
     assert.match(html, /aria-label="Proxima San Francisco, home"/)
     assert.match(html, /<a class="proxima-shell-footer__give" href="\/give">Give<\/a><\/nav>/, 'quiet Give link after the policy links (2.2.1)')
-    assert.equal((html.match(/target="_blank"/g) ?? []).length, 4, 'only the two external Give items and the two badges open a new tab')
+    assert.equal((html.match(/target="_blank"/g) ?? []).length, 2, 'only the stock Give item and the Candid badge open a new tab (2.2.2)')
+    assert.match(html, /<a class="proxima-shell-footer__badge" href="\/give#daf" aria-label="Donate to Proxima with your donor-advised fund">/, 'the DAF badge goes to the Give page DAF section (2.2.2)')
     assert.match(html, new RegExp(`© ${new Date().getFullYear()} Proxima Partners, Inc.`))
     assert.doesNotMatch(html, /Proxima Cafe/, 'the cafe is named only in its section bar')
   }

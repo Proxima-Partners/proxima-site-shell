@@ -2,6 +2,14 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.2.2 - 2026-10-11
+
+Brand System: v2.2.2 (`10-Site-Chrome/navigation.json`).
+
+- The Give menu's "Donor-Advised Fund (DAF)" item and the footer DAF badge go to `/give#daf` on the main site, in the same tab, instead of DonateStock's DAF checkout (Mike, 2026-10-11).
+
+Consumer impact: link destinations only; no prop, markup-structure or CSS changes. The main site serves `#daf` from v1.0 (v0.5 has no such section), so the cafe adopts 0.2.2 together with the main site v1.0 launch. Rollback: 0.2.1 at `0819896`.
+
 ## 0.2.1 - 2026-10-10
 
 Brand System: v2.2.1 (unchanged).
