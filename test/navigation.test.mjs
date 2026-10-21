@@ -62,6 +62,14 @@ test('the Give menu has Give cryptocurrency and no Tributes (Brand System 2.3.0)
   assert.equal(resolveProximaLink(crypto, 'cafe').href, '/give#crypto')
 })
 
+test('the Give menu says Give stock, filled out online (Brand System 2.4.1)', () => {
+  const labels = chrome.header.give.items.map((item) => item.label)
+  assert.equal(labels.includes('Give stock certificates'), false)
+  const stock = chrome.header.give.items.find((item) => item.label === 'Give stock')
+  assert.equal(stock.description, 'Fill out a short form online and DonateStock sends the transfer request to your broker.')
+  assert.match(resolveProximaLink(stock, 'main').href, /^https:\/\/donatestock\.com\/donate\/new\/stock\?/)
+})
+
 test('marks the current page only inside its own app', () => {
   const blog = chrome.sectionBars.cafe.items.find((link) => link.label === 'Blog')
   assert.equal(proximaLinkIsCurrent(blog, 'cafe', '/blog'), true)

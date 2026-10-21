@@ -2,6 +2,15 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.4.0 - 2026-10-21
+
+Brand System: v3.0.1 (`10-Site-Chrome/navigation.json`; tokens from `03-Design-Tokens`). Skips v2.4.x, v3.0.0 and the 2.4.1-only 0.4.0 that was planned; this release carries both.
+
+- Give menu: "Give stock certificates" is renamed "Give stock", described "Fill out a short form online and DonateStock sends the transfer request to your broker." The DonateStock link is unchanged (Brand System 2.4.1; Mike, 2026-10-13).
+- Header and footer are stamped Brand System 3.0.1. The v3 tokens (25% and 50% tints, black tints, `--proxima-element-*`) arrive in the mirrored `tokens.json`; the shell's own styles don't use them.
+
+Consumer impact: an app that keys on the Give menu label "Give stock certificates" must move to "Give stock" in the same change (the main site's `lib/giving.ts`). The app must load v3.0.1's `tokens.css`. No prop, markup-structure or CSS changes. Rollback: 0.3.0 at `a1de8dd`.
+
 ## 0.3.0 - 2026-10-11
 
 Brand System: v2.3.0 (`10-Site-Chrome/navigation.json`).
