@@ -2,6 +2,14 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.5.3 - 2026-10-22
+
+Brand System: v3.1.3 (unchanged).
+
+- The header's Give button is bold (700) instead of semibold (Mike, 2026-10-22). White on Flame measures 3.68:1, which fails WCAG AA for normal text (4.5:1) but passes as large text (3:1), and 20px counts as large only when bold. Brand Book R16 still says semibold; the decision is recorded in the Brand System's exceptions register until R16 is revised.
+
+Consumer impact: CSS only (one font weight). No prop, markup or content changes. Rollback: 0.5.2 at `b830699`.
+
 ## 0.5.2 - 2026-10-21
 
 Brand System: v3.1.3 (`10-Site-Chrome/navigation.json`).

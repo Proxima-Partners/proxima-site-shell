@@ -128,7 +128,8 @@
   border-radius: var(--proxima-radius-pill);
   background: var(--proxima-color-flame);
   color: var(--proxima-color-white);
-  font: 600 20px/1.2 var(--proxima-shell-font);
+  /* Bold, not semibold: White on Flame is 3.68:1, which passes WCAG AA only as large text (20px bold). */
+  font: 700 20px/1.2 var(--proxima-shell-font);
   cursor: pointer;
   transition: box-shadow var(--proxima-motion-fast), transform var(--proxima-motion-fast);
 }
