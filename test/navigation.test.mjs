@@ -67,7 +67,8 @@ test('the Give menu says Give stock, filled out online (Brand System 2.4.1)', ()
   assert.equal(labels.includes('Give stock certificates'), false)
   const stock = chrome.header.give.items.find((item) => item.label === 'Give stock')
   assert.equal(stock.description, 'Fill out a short form online and DonateStock sends the transfer request to your broker.')
-  assert.match(resolveProximaLink(stock, 'main').href, /^https:\/\/donatestock\.com\/donate\/new\/stock\?/)
+  // Brand System 3.1.2: DonateStock's Easy Button donation page; the old /donate/new/stock link is a 404.
+  assert.match(resolveProximaLink(stock, 'main').href, /^https:\/\/donatestock\.com\/donate\/new\/\?ds_platform=easybutton&ein=334450216$/)
 })
 
 test('marks the current page only inside its own app', () => {

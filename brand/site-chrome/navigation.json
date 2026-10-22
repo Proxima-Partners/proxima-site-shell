@@ -1,6 +1,6 @@
 {
   "$comment": "Approved header and footer for every page served at liveproxima.org, including the cafe at /cafe. Sites render this; they never retype it. Paths are root-relative on liveproxima.org. 'app' names which application serves the path: 'main' (proxima-simple-website) or 'cafe' (proxima-cafe-webdesign, basePath /cafe). Validated by scripts/check-site-chrome.mjs.",
-  "version": "3.1.0",
+  "version": "3.1.2",
   "domain": "https://liveproxima.org",
   "apps": {
     "main": { "basePath": "" },
@@ -21,12 +21,12 @@
     "give": {
       "label": "Give",
       "menuLabel": "Ways to give",
-      "source": "FB-022 (Give is the primary call to action, in the top bar); FB-024 wording (Mike, 2026-10-08); QCD uses the IRS term (Mike, 2026-10-09); DAF goes to the Give page DAF section (Mike, 2026-10-11); Tributes off and Give cryptocurrency added (Mike, 2026-10-11); Give stock wording matches DonateStock's online flow (Mike, 2026-10-13)",
+      "source": "FB-022 (Give is the primary call to action, in the top bar); FB-024 wording (Mike, 2026-10-08); QCD uses the IRS term (Mike, 2026-10-09); DAF goes to the Give page DAF section (Mike, 2026-10-11); Tributes off and Give cryptocurrency added (Mike, 2026-10-11); Give stock wording matches DonateStock's online flow (Mike, 2026-10-13); Give stock goes to DonateStock's Easy Button donation page (Mike, 2026-10-21)",
       "items": [
         { "label": "Give securely online", "description": "Your donation matters", "href": { "fundraiseUpForm": "FUNYXMNPKXG" } },
         { "label": "Donor-Advised Fund (DAF)", "description": "Make a contribution from your DAF", "href": { "app": "main", "path": "/give#daf" } },
         { "label": "Qualified Charitable Distribution (QCD)", "description": "Give from your qualified retirement funds", "href": { "app": "main", "path": "/give/qcd" } },
-        { "label": "Give stock", "description": "Fill out a short form online and DonateStock sends the transfer request to your broker.", "href": { "external": "https://donatestock.com/donate/new/stock?ds_platform=easydaf&ein=334450216&blm_aid=0" } },
+        { "label": "Give stock", "description": "Fill out a short form online and DonateStock sends the transfer request to your broker.", "href": { "external": "https://donatestock.com/donate/new/?ds_platform=easybutton&ein=334450216" } },
         { "label": "Check if your employer matches your gift", "description": "Double your donation with employer matching funds", "href": { "app": "main", "path": "/give#matching" } },
         { "label": "Give cryptocurrency", "description": "Donate cryptocurrency securely to Proxima.", "href": { "app": "main", "path": "/give#crypto" } }
       ]

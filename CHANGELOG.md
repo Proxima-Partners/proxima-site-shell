@@ -2,6 +2,14 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.5.1 - 2026-10-21
+
+Brand System: v3.1.2 (`10-Site-Chrome/navigation.json`).
+
+- Give menu item 4, **Give stock**, now opens DonateStock's Easy Button donation page (`https://donatestock.com/donate/new/?ds_platform=easybutton&ein=334450216`). The old `/donate/new/stock?ds_platform=easydaf…` link showed DonateStock's 404 page (Mike, 2026-10-21). Label and description are unchanged. Header and footer are stamped 3.1.2.
+
+Consumer impact: link destination only; no label, prop, markup-structure or CSS changes. An app must be locked to v3.1.2 to match. Rollback: 0.5.0 at `78db690`.
+
 ## 0.5.0 - 2026-10-21
 
 Brand System: v3.1.0 (`10-Site-Chrome/navigation.json`; tokens from `03-Design-Tokens`).
