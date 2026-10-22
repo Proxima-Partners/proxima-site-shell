@@ -49,9 +49,10 @@ test('Fundraise Up and external links are never handed to an app router', () => 
   assert.deepEqual([resolveProximaLink(online, 'cafe').href, resolveProximaLink(online, 'cafe').sameApp], ['?form=FUNYXMNPKXG', false])
   assert.equal(resolveProximaLink(stock, 'main').sameApp, false)
   assert.match(resolveProximaLink(stock, 'main').href, /^https:\/\/donatestock\.com\//)
-  // Brand System 2.2.2: DAF goes to the main site's Give page DAF section.
-  assert.deepEqual([resolveProximaLink(daf, 'main').href, resolveProximaLink(daf, 'main').sameApp], ['/give#daf', true])
-  assert.deepEqual([resolveProximaLink(daf, 'cafe').href, resolveProximaLink(daf, 'cafe').sameApp], ['/give#daf', false])
+  // Brand System 3.1.3: DAF goes straight to DonateStock's DAF page, like Give stock (Mike, 2026-10-21).
+  const dafPage = 'https://donatestock.com/donate/new/daf?ds_platform=easydaf&ein=334450216'
+  assert.deepEqual([resolveProximaLink(daf, 'main').href, resolveProximaLink(daf, 'main').sameApp], [dafPage, false])
+  assert.deepEqual([resolveProximaLink(daf, 'cafe').href, resolveProximaLink(daf, 'cafe').sameApp], [dafPage, false])
 })
 
 test('the Give menu has Give cryptocurrency and no Tributes (Brand System 2.3.0)', () => {
@@ -59,7 +60,9 @@ test('the Give menu has Give cryptocurrency and no Tributes (Brand System 2.3.0)
   assert.equal(labels.includes('Tributes'), false)
   const crypto = chrome.header.give.items.find((item) => item.label === 'Give cryptocurrency')
   assert.equal(crypto.description, 'Donate cryptocurrency securely to Proxima.')
-  assert.equal(resolveProximaLink(crypto, 'cafe').href, '/give#crypto')
+  // Brand System 3.1.3: straight to DonateStock's crypto page (Mike, 2026-10-21).
+  assert.equal(resolveProximaLink(crypto, 'cafe').href, 'https://donatestock.com/donate/new/crypto?ds_platform=easycrypto&ein=334450216')
+  assert.equal(resolveProximaLink(crypto, 'main').sameApp, false)
 })
 
 test('the Give menu says Give stock, filled out online (Brand System 2.4.1)', () => {
@@ -94,8 +97,8 @@ test('the header and footer render the same markup in both apps, stamped with bo
     assert.match(html, /href="\/#about">Who We Are</)
     assert.match(html, /aria-label="Proxima San Francisco, home"/)
     assert.match(html, /<a class="proxima-shell-footer__give" href="\/give">Give<\/a><\/nav>/, 'quiet Give link after the policy links (2.2.1)')
-    assert.equal((html.match(/target="_blank"/g) ?? []).length, 2, 'only the stock Give item and the Candid badge open a new tab (2.2.2)')
-    assert.match(html, /<a class="proxima-shell-footer__badge" href="\/give#daf" aria-label="Donate to Proxima with your donor-advised fund">/, 'the DAF badge goes to the Give page DAF section (2.2.2)')
+    assert.equal((html.match(/target="_blank"/g) ?? []).length, 5, 'the DAF, stock and crypto Give items and both footer badges open a new tab (3.1.3)')
+    assert.match(html, /<a class="proxima-shell-footer__badge" href="https:\/\/donatestock\.com\/donate\/new\/daf\?ds_platform=easydaf&amp;ein=334450216" aria-label="Donate to Proxima with your donor-advised fund" target="_blank"/, 'the DAF badge goes straight to DonateStock (3.1.3)')
     assert.match(html, new RegExp(`© ${new Date().getFullYear()} Proxima Partners, Inc.`))
     assert.doesNotMatch(html, /Proxima Cafe/, 'the cafe is named only in its section bar')
   }

@@ -2,6 +2,18 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.5.2 - 2026-10-21
+
+Brand System: v3.1.3 (`10-Site-Chrome/navigation.json`).
+
+- The Give menu's **Donor-Advised Fund (DAF)** and **Give cryptocurrency** items, and the footer's "Do you have a DAF?" badge, open DonateStock directly, as Give stock does (Mike, 2026-10-21):
+  - DAF and the badge: `https://donatestock.com/donate/new/daf?ds_platform=easydaf&ein=334450216`.
+  - Crypto: `https://donatestock.com/donate/new/crypto?ds_platform=easycrypto&ein=334450216`.
+
+  They were `/give#daf` and `/give#crypto` on the main site. Labels, descriptions and the badge image are unchanged. Header and footer are stamped 3.1.3.
+
+Consumer impact: link destinations only. All three are now external links that open in a new tab, so they are no longer handed to an app router. No prop, markup-structure or CSS changes. An app must be locked to v3.1.3 to match. Rollback: 0.5.1 at `c0ce473`.
+
 ## 0.5.1 - 2026-10-21
 
 Brand System: v3.1.2 (`10-Site-Chrome/navigation.json`).
