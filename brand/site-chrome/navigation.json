@@ -1,6 +1,6 @@
 {
   "$comment": "Approved header and footer for every page served at liveproxima.org, including the cafe at /cafe. Sites render this; they never retype it. Paths are root-relative on liveproxima.org. 'app' names which application serves the path: 'main' (proxima-simple-website) or 'cafe' (proxima-cafe-webdesign, basePath /cafe). Validated by scripts/check-site-chrome.mjs.",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "domain": "https://liveproxima.org",
   "apps": {
     "main": { "basePath": "" },

@@ -2,6 +2,14 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.5.0 - 2026-10-21
+
+Brand System: v3.1.0 (`10-Site-Chrome/navigation.json`; tokens from `03-Design-Tokens`).
+
+- Header and footer are stamped Brand System 3.1.0. The release tightens composition rules in the Brand Book (circles in a cluster are equal in size, one ring weight per view, only White or an 8% tint under the logo); the shell's chrome, labels and links are unchanged.
+
+Consumer impact: version stamps only; no label, link, prop, markup-structure or CSS changes. An app must be locked to v3.1.0 to match. Rollback: 0.4.0 at `7add702`.
+
 ## 0.4.0 - 2026-10-21
 
 Brand System: v3.0.1 (`10-Site-Chrome/navigation.json`; tokens from `03-Design-Tokens`). Skips v2.4.x, v3.0.0 and the 2.4.1-only 0.4.0 that was planned; this release carries both.
