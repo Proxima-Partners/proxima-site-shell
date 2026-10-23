@@ -1,5 +1,3 @@
 node_modules/
-dist/
-src/chrome.generated.ts
 *.tgz
 .DS_Store

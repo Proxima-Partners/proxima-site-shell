@@ -99,7 +99,7 @@ test('the header and footer render the same markup in both apps, stamped with bo
     assert.match(html, /<a class="proxima-shell-footer__give" href="\/give">Give<\/a><\/nav>/, 'quiet Give link after the policy links (2.2.1)')
     assert.equal((html.match(/target="_blank"/g) ?? []).length, 5, 'the DAF, stock and crypto Give items and both footer badges open a new tab (3.1.3)')
     assert.match(html, /<a class="proxima-shell-footer__badge" href="https:\/\/donatestock\.com\/donate\/new\/daf\?ds_platform=easydaf&amp;ein=334450216" aria-label="Donate to Proxima with your donor-advised fund" target="_blank"/, 'the DAF badge goes straight to DonateStock (3.1.3)')
-    assert.match(html, new RegExp(`© ${new Date().getFullYear()} Proxima Partners, Inc.`))
+    assert.match(html, new RegExp(`<p class="proxima-shell-footer__meta">© ${new Date().getFullYear()} Proxima Partners, Inc\\.`))
     assert.doesNotMatch(html, /Proxima Cafe/, 'the cafe is named only in its section bar')
   }
 })

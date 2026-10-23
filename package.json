@@ -1,6 +1,6 @@
 {
   "name": "@proxima/site-shell",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "private": true,
   "description": "Shared Proxima header, Give menu, section bar and footer for every page at liveproxima.org, built from the Brand System release",
   "type": "module",
@@ -24,10 +24,10 @@
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
-    "prepare": "npm run build",
+    "check:dist": "git diff --exit-code -- dist src/chrome.generated.ts",
     "brand:sync": "node scripts/sync-brand.mjs",
     "brand:check": "node scripts/check-brand.mjs",
-    "test": "npm run build && node scripts/check-brand.mjs && node --test test/*.test.mjs",
+    "test": "npm run build && npm run check:dist && node scripts/check-brand.mjs && node --test test/*.test.mjs",
     "pack:check": "npm pack --dry-run"
   },
   "peerDependencies": {
@@ -37,8 +37,8 @@
   "devDependencies": {
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.3.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "typescript": "~6.0.2"
   },
   "engines": {

@@ -1,0 +1,258 @@
+/*
+ * Proxima header, Give menu, section bar and footer (Brand System 2.2.0, 10-Site-Chrome).
+ * Ported from main site v1.0. Every color, space, radius, focus, motion and type value is a Brand System
+ * token (--proxima-*), so the consuming app must load the release's tokens.css.
+ * scripts/check-brand.mjs fails on any hex value that is not in the palette.
+ *
+ * Optional hooks a consuming app may set (defaults match main site v1.0):
+ *   --proxima-shell-width   content width          (v1.0 --shell)
+ *   --proxima-shell-sans    interface font stack   (the app's next/font variable, then --proxima-font-sans)
+ *   --proxima-shell-header-height
+ */
+
+.proxima-shell-skip,
+.proxima-shell-header,
+.proxima-shell-section-bar,
+.proxima-shell-footer,
+.proxima-shell-give {
+  --proxima-shell-w: var(--proxima-shell-width, min(1200px, calc(100vw - 2 * var(--proxima-space-5))));
+  --proxima-shell-font: var(--proxima-shell-sans, var(--proxima-font-sans));
+  --proxima-shell-h: var(--proxima-shell-header-height, 80px);
+  box-sizing: border-box;
+  font-family: var(--proxima-shell-font);
+}
+.proxima-shell-header *,
+.proxima-shell-section-bar *,
+.proxima-shell-footer *,
+.proxima-shell-give * { box-sizing: border-box; }
+.proxima-shell-header :is(p, ul),
+.proxima-shell-footer :is(p, ul) { margin: 0; }
+.proxima-shell-give ul { margin: 0; padding: 0; list-style: none; }
+
+/* One focus treatment everywhere: 3px Mauve outline (FB-020). */
+.proxima-shell-header :focus-visible,
+.proxima-shell-section-bar :focus-visible,
+.proxima-shell-footer :focus-visible,
+.proxima-shell-give :focus-visible,
+.proxima-shell-skip:focus-visible {
+  outline: var(--proxima-focus-width) solid var(--proxima-focus-color);
+  outline-offset: 2px;
+}
+
+.proxima-shell-skip {
+  position: absolute;
+  left: var(--proxima-space-2);
+  top: -100px;
+  z-index: 100;
+  padding: var(--proxima-space-1) var(--proxima-space-2);
+  background: var(--proxima-color-white);
+  color: var(--proxima-color-black);
+  border-radius: var(--proxima-radius-pill);
+}
+.proxima-shell-skip:focus { top: var(--proxima-space-1); }
+
+/* Header */
+.proxima-shell-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--proxima-color-white);
+  border-bottom: 1px solid var(--proxima-color-grey-light);
+}
+.proxima-shell-header__inner {
+  width: var(--proxima-shell-w);
+  margin-inline: auto;
+  min-height: var(--proxima-shell-h);
+  display: flex;
+  align-items: center;
+  gap: var(--proxima-space-4);
+}
+.proxima-shell-header__logo { display: block; margin-right: auto; }
+.proxima-shell-header__logo img { display: block; width: auto; height: 48px; }
+.proxima-shell-header__nav { display: flex; gap: var(--proxima-space-4); }
+.proxima-shell-header__nav a,
+.proxima-shell-header__mobile a {
+  color: var(--proxima-color-black);
+  font-weight: 500;
+  font-size: var(--proxima-type-nav-button-size);
+  line-height: var(--proxima-type-nav-button-line);
+  text-decoration: none;
+}
+.proxima-shell-header__nav a:hover,
+.proxima-shell-header__mobile a:hover,
+.proxima-shell-header__nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 3px; }
+.proxima-shell-header__actions { display: flex; align-items: center; gap: var(--proxima-space-2); }
+
+.proxima-shell-header__menu {
+  display: none;
+  width: var(--proxima-touch-target-min);
+  height: var(--proxima-touch-target-min);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  place-items: center;
+}
+.proxima-shell-header__burger,
+.proxima-shell-header__burger::before,
+.proxima-shell-header__burger::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--proxima-color-black);
+}
+.proxima-shell-header__burger { position: relative; }
+.proxima-shell-header__burger::before,
+.proxima-shell-header__burger::after { content: ""; position: absolute; left: 0; }
+.proxima-shell-header__burger::before { top: -6px; }
+.proxima-shell-header__burger::after { top: 6px; }
+
+.proxima-shell-header__mobile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--proxima-space-2);
+  padding: var(--proxima-space-2);
+  border-top: 1px solid var(--proxima-color-grey-light);
+}
+.proxima-shell-header__mobile[hidden] { display: none; }
+
+/* Give button (FB-016, Brand System 2.1.0): Flame, White 20px semibold, pill. Hover: 2px Black ring.
+   Press: 3px Black ring and a 1px press. */
+.proxima-shell-give { position: relative; }
+.proxima-shell-give__button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--proxima-space-1);
+  min-height: var(--proxima-touch-target-min);
+  padding: 10px var(--proxima-space-3);
+  border: 0;
+  border-radius: var(--proxima-radius-pill);
+  background: var(--proxima-color-flame);
+  color: var(--proxima-color-white);
+  /* Bold, not semibold: White on Flame is 3.68:1, which passes WCAG AA only as large text (20px bold). */
+  font: 700 20px/1.2 var(--proxima-shell-font);
+  cursor: pointer;
+  transition: box-shadow var(--proxima-motion-fast), transform var(--proxima-motion-fast);
+}
+.proxima-shell-give__button:hover { box-shadow: 0 0 0 2px var(--proxima-color-black); }
+.proxima-shell-give__button:active,
+.proxima-shell-give__button[aria-expanded="true"] {
+  box-shadow: 0 0 0 3px var(--proxima-color-black);
+  transform: translateY(1px);
+}
+.proxima-shell-give__button:focus-visible { outline-color: var(--proxima-color-black); }
+.proxima-shell-give__list {
+  position: absolute;
+  right: 0;
+  top: calc(100% + var(--proxima-space-1));
+  z-index: 60;
+  width: 340px;
+  padding: var(--proxima-space-1);
+  background: var(--proxima-color-white);
+  color: var(--proxima-color-black);
+  border: 1px solid var(--proxima-color-grey-light);
+  border-radius: var(--proxima-radius-field);
+  box-shadow: var(--proxima-shadow-card);
+  display: grid;
+  gap: 2px;
+}
+.proxima-shell-give__list[hidden] { display: none; }
+.proxima-shell-give__list a {
+  display: block;
+  padding: 10px var(--proxima-space-2);
+  border-radius: var(--proxima-space-1);
+  color: var(--proxima-color-black);
+  text-decoration: none;
+}
+.proxima-shell-give__list a:hover { background: var(--proxima-color-grey-light); }
+.proxima-shell-give__label { display: block; font-weight: 600; font-size: var(--proxima-type-nav-button-size); line-height: 1.3; }
+.proxima-shell-give__description { display: block; font-size: var(--proxima-type-caption-size); line-height: var(--proxima-type-caption-line); }
+.proxima-shell-give--prompt .proxima-shell-give__list { right: auto; left: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .proxima-shell-give__button { transition: none; }
+}
+
+/* Section bar (the cafe): under the header, the section's own sub-navigation. */
+.proxima-shell-section-bar {
+  background: var(--proxima-color-white);
+  border-bottom: 1px solid var(--proxima-color-grey-light);
+}
+.proxima-shell-section-bar__inner {
+  width: var(--proxima-shell-w);
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--proxima-space-3);
+}
+.proxima-shell-section-bar a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--proxima-touch-target-min);
+  color: var(--proxima-color-black);
+  font-size: var(--proxima-type-caption-size);
+  line-height: var(--proxima-type-caption-line);
+  text-decoration: none;
+}
+.proxima-shell-section-bar a:first-child { font-weight: 600; color: var(--proxima-color-teal); }
+.proxima-shell-section-bar a:hover,
+.proxima-shell-section-bar a[aria-current="page"] { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Footer: v0.5's layout carried into v1.0 (Mike, 2026-10-10). */
+.proxima-shell-footer { padding-block: var(--proxima-space-4); border-top: 1px solid var(--proxima-color-grey); background: var(--proxima-color-grey-light); }
+.proxima-shell-footer__inner {
+  width: var(--proxima-shell-w);
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--proxima-space-3);
+  color: var(--proxima-color-black);
+  font-size: var(--proxima-type-caption-size);
+  line-height: var(--proxima-type-caption-line);
+}
+.proxima-shell-footer__details { display: grid; gap: 4px; }
+.proxima-shell-footer address { font-style: normal; }
+.proxima-shell-footer__badges { display: flex; align-items: flex-start; gap: var(--proxima-space-2); flex: 0 0 auto; }
+.proxima-shell-footer__badge { display: inline-flex; flex: 0 0 auto; }
+.proxima-shell-footer__badge img { display: block; width: 76px; height: 76px; object-fit: cover; }
+.proxima-shell-footer__policies { display: flex; flex-wrap: wrap; gap: var(--proxima-space-3); }
+.proxima-shell-footer__policies a { min-height: var(--proxima-touch-target-min); display: inline-flex; align-items: center; color: var(--proxima-color-black); text-underline-offset: 0.2em; }
+.proxima-shell-footer__policies a:hover,
+.proxima-shell-footer__policies a:focus-visible { color: var(--proxima-color-teal); }
+.proxima-shell-footer__policies .proxima-shell-footer__give { font-weight: 600; color: var(--proxima-color-teal); }
+.proxima-shell-footer__meta { width: 100%; padding-top: var(--proxima-space-2); border-top: 1px solid var(--proxima-color-grey); }
+.proxima-shell-footer__meta span { margin-inline: 0.45rem; }
+
+@media (max-width: 1000px) {
+  .proxima-shell-footer__inner { flex-direction: column; align-items: flex-start; }
+}
+
+/* Phone: 640px and below (breakpoint.mobile). Patterns simplify rather than shrink. */
+@media (max-width: 640px) {
+  .proxima-shell-skip,
+  .proxima-shell-header,
+  .proxima-shell-section-bar,
+  .proxima-shell-footer,
+  .proxima-shell-give {
+    --proxima-shell-w: var(--proxima-shell-width, calc(100vw - 2 * var(--proxima-space-2)));
+    --proxima-shell-h: var(--proxima-shell-header-height, 64px);
+  }
+  .proxima-shell-header__nav { display: none; }
+  .proxima-shell-header__menu { display: grid; }
+  .proxima-shell-header__logo img { height: 34px; }
+  .proxima-shell-header__inner { gap: var(--proxima-space-1); }
+  .proxima-shell-give__button { padding: 8px var(--proxima-space-2); }
+  .proxima-shell-give__list { width: min(340px, calc(100vw - 2 * var(--proxima-space-2))); }
+  /* The header's Give menu opens as a full-width sheet under the header (main site v1.0). */
+  .proxima-shell-give--nav { position: static; }
+  .proxima-shell-give--nav .proxima-shell-give__list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    width: auto;
+    border-radius: 0;
+    border-inline: 0;
+  }
+}

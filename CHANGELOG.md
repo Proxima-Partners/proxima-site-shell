@@ -2,6 +2,15 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.5.4 - 2026-10-22
+
+Brand System: v3.1.3 (unchanged).
+
+- Commit the generated chrome and compiled package so git-dependency installs no longer rebuild the shell or install its development toolchain. `npm test` verifies a fresh build matches the committed output.
+- Suppress the expected hydration difference in the footer year when a page crosses a year boundary; the client still displays the current year.
+
+Consumer impact: installs no longer build the shell; no prop, visible markup, CSS or content changes. Consumers must pin this release together. Rollback: 0.5.3 at `caa1d91`.
+
 ## 0.5.3 - 2026-10-22
 
 Brand System: v3.1.3 (unchanged).
