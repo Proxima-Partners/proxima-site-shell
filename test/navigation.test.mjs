@@ -44,9 +44,10 @@ test('links stay on liveproxima.org: root-relative in both apps, cafe under /caf
   assert.equal(resolveProximaLink(blog, 'cafe').appPath, '/blog')
 })
 
-test('Fundraise Up and external links are never handed to an app router', () => {
+test('Qgiv and other external giving links are never handed to an app router', () => {
   const [online, daf, , stock] = chrome.header.give.items
-  assert.deepEqual([resolveProximaLink(online, 'cafe').href, resolveProximaLink(online, 'cafe').sameApp], ['?form=FUNYXMNPKXG', false])
+  const qgiv = 'https://secure.qgiv.com/for/giveproxima'
+  assert.deepEqual([resolveProximaLink(online, 'cafe').href, resolveProximaLink(online, 'cafe').sameApp], [qgiv, false])
   assert.equal(resolveProximaLink(stock, 'main').sameApp, false)
   assert.match(resolveProximaLink(stock, 'main').href, /^https:\/\/donatestock\.com\//)
   // Brand System 3.1.3: DAF goes straight to DonateStock's DAF page, like Give stock (Mike, 2026-10-21).
@@ -96,8 +97,8 @@ test('the header and footer render the same markup in both apps, stamped with bo
     assert.match(html, /href="\/cafe"( aria-current="page")?>Stories</)
     assert.match(html, /href="\/#about">Who We Are</)
     assert.match(html, /aria-label="Proxima San Francisco, home"/)
-    assert.match(html, /<a class="proxima-shell-footer__give" href="\/give">Give<\/a><\/nav>/, 'quiet Give link after the policy links (2.2.1)')
-    assert.equal((html.match(/target="_blank"/g) ?? []).length, 5, 'the DAF, stock and crypto Give items and both footer badges open a new tab (3.1.3)')
+    assert.match(html, /<a class="proxima-shell-footer__give" href="https:\/\/secure\.qgiv\.com\/for\/giveproxima" target="_blank" rel="noreferrer">Give<\/a><\/nav>/, 'quiet Give link opens Qgiv (3.1.4)')
+    assert.equal((html.match(/target="_blank"/g) ?? []).length, 7, 'Qgiv online and footer links, DAF, stock, crypto and both footer badges open a new tab (3.1.4)')
     assert.match(html, /<a class="proxima-shell-footer__badge" href="https:\/\/donatestock\.com\/donate\/new\/daf\?ds_platform=easydaf&amp;ein=334450216" aria-label="Donate to Proxima with your donor-advised fund" target="_blank"/, 'the DAF badge goes straight to DonateStock (3.1.3)')
     assert.match(html, new RegExp(`<p class="proxima-shell-footer__meta">© ${new Date().getFullYear()} Proxima Partners, Inc\\.`))
     assert.doesNotMatch(html, /Proxima Cafe/, 'the cafe is named only in its section bar')

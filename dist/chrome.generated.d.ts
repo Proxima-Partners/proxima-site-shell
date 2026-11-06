@@ -1,5 +1,5 @@
 export declare const chrome: {
-    readonly version: "3.1.3";
+    readonly version: "3.1.4";
     readonly domain: "https://liveproxima.org";
     readonly apps: {
         readonly main: {
@@ -41,12 +41,12 @@ export declare const chrome: {
         readonly give: {
             readonly label: "Give";
             readonly menuLabel: "Ways to give";
-            readonly source: "FB-022 (Give is the primary call to action, in the top bar); FB-024 wording (Mike, 2026-10-08); QCD uses the IRS term (Mike, 2026-10-09); DAF goes to the Give page DAF section (Mike, 2026-10-11); Tributes off and Give cryptocurrency added (Mike, 2026-10-11); Give stock wording matches DonateStock's online flow (Mike, 2026-10-13); Give stock goes to DonateStock's Easy Button donation page (Mike, 2026-10-21); DAF and Give cryptocurrency go straight to DonateStock, like Give stock (Mike, 2026-10-21)";
+            readonly source: "FB-022 (Give is the primary call to action, in the top bar); FB-024 wording (Mike, 2026-10-08); QCD uses the IRS term (Mike, 2026-10-09); DAF goes to the Give page DAF section (Mike, 2026-10-11); Tributes off and Give cryptocurrency added (Mike, 2026-10-11); Give stock wording matches DonateStock's online flow (Mike, 2026-10-13); Give stock goes to DonateStock's Easy Button donation page (Mike, 2026-10-21); DAF and Give cryptocurrency go straight to DonateStock, like Give stock (Mike, 2026-10-21); Give securely online goes to Qgiv (Mike, 2026-11-05)";
             readonly items: readonly [{
                 readonly label: "Give securely online";
                 readonly description: "Your donation matters";
                 readonly href: {
-                    readonly fundraiseUpForm: "FUNYXMNPKXG";
+                    readonly external: "https://secure.qgiv.com/for/giveproxima";
                 };
             }, {
                 readonly label: "Donor-Advised Fund (DAF)";
@@ -152,18 +152,17 @@ export declare const chrome: {
         readonly give: {
             readonly label: "Give";
             readonly href: {
-                readonly app: "main";
-                readonly path: "/give";
+                readonly external: "https://secure.qgiv.com/for/giveproxima";
             };
             readonly style: "quiet: Teal semibold text link after the policy links";
-            readonly source: "Footer giving touchpoint, storyboard v2.0 (approved by Mike, 2026-10-05); restored in 2.2.1 (Mike, 2026-10-10)";
+            readonly source: "Footer giving touchpoint, storyboard v2.0 (approved by Mike, 2026-10-05); restored in 2.2.1 (Mike, 2026-10-10); direct Qgiv destination approved by Mike (2026-11-05)";
         };
         readonly meta: "© {year} Proxima Partners, Inc.";
     };
-    readonly rules: readonly ["Every page at liveproxima.org, in either app, renders this header and footer with the same labels, order, destinations, tokens and behavior.", "Links into the other app are root-relative on the same domain. Nothing opens a new tab except external giving and Candid links.", "The Give menu needs the Fundraise Up loader on every page that shows it, so fundraiseUpForm items open checkout in place.", "A site may append its own version label after the footer meta line. Nothing else is site-specific."];
+    readonly rules: readonly ["Every page at liveproxima.org, in either app, renders this header and footer with the same labels, order, destinations, tokens and behavior.", "Links into the other app are root-relative on the same domain. Nothing opens a new tab except external giving and Candid links.", "Give securely online and the footer Give link open Proxima's secure Qgiv page in a new tab.", "A site may append its own version label after the footer meta line. Nothing else is site-specific."];
 };
 /** The Brand System release the header and footer come from. */
-export declare const brandVersion = "3.1.3";
+export declare const brandVersion = "3.1.4";
 /** This package's version, stamped on the header and footer as data-proxima-shell-version. */
-export declare const shellVersion = "0.5.4";
+export declare const shellVersion = "0.5.5";
 //# sourceMappingURL=chrome.generated.d.ts.map

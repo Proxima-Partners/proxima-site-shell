@@ -2,6 +2,15 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.5.5 - 2026-11-05
+
+Brand System: v3.1.4 (`10-Site-Chrome/navigation.json`).
+
+- The Give menu's **Give securely online** item and the footer's **Give** link open Proxima's secure Qgiv campaign at `https://secure.qgiv.com/for/giveproxima` in a new tab (Mike, 2026-11-05).
+- The header item previously opened Fundraise Up form `FUNYXMNPKXG` in place; the footer previously routed to the main site's `/give` page.
+
+Consumer impact: link destinations only. Both links are external and are no longer handed to an app router. Consumers no longer need the Fundraise Up loader for shared chrome after adopting this release. No prop, markup-structure or CSS change. Both consumers must pin this release together. Rollback: 0.5.4 at `ddf17d2`.
+
 ## 0.5.4 - 2026-10-22
 
 Brand System: v3.1.3 (unchanged).

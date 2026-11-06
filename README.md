@@ -37,7 +37,7 @@ import { ProximaFooter, ProximaHeader, ProximaSectionBar } from '@proxima/site-s
 export function Chrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() // path inside this app, without basePath
   const router = useRouter()
-  // Route same-app links client-side; leave cross-app, external and Fundraise Up links to the browser.
+  // Route same-app links client-side; leave cross-app and external links to the browser.
   const onNavigate = (event, { sameApp, appPath }) => {
     if (!sameApp || !appPath || event.metaKey || event.ctrlKey || event.shiftKey) return
     event.preventDefault()
@@ -56,7 +56,7 @@ export function Chrome({ children }: { children: React.ReactNode }) {
 
 - The main site uses `currentApp="main"`, no section bar, and may pass `versionLabel="v1.0"` to the footer.
 - `ProximaGiveMenu` is exported for gift prompts lower on a page (`variant="prompt"`, optional `label`).
-- The Give menu's "Give securely online" item is a `?form=` link. Every app that shows the header must load the Fundraise Up loader so they open checkout in place.
+- The Give menu's "Give securely online" item and the footer Give link open Proxima's secure Qgiv campaign in a new tab.
 - The header and footer carry `data-proxima-shell-version` and `data-proxima-brand-version`, so a check on the live site can confirm both apps match.
 - Optional CSS hooks: `--proxima-shell-width`, `--proxima-shell-sans` (for example the app's `next/font` variable), `--proxima-shell-header-height`.
 

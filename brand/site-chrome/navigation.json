@@ -1,6 +1,6 @@
 {
   "$comment": "Approved header and footer for every page served at liveproxima.org, including the cafe at /cafe. Sites render this; they never retype it. Paths are root-relative on liveproxima.org. 'app' names which application serves the path: 'main' (proxima-simple-website) or 'cafe' (proxima-cafe-webdesign, basePath /cafe). Validated by scripts/check-site-chrome.mjs.",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "domain": "https://liveproxima.org",
   "apps": {
     "main": { "basePath": "" },
@@ -21,9 +21,9 @@
     "give": {
       "label": "Give",
       "menuLabel": "Ways to give",
-      "source": "FB-022 (Give is the primary call to action, in the top bar); FB-024 wording (Mike, 2026-10-08); QCD uses the IRS term (Mike, 2026-10-09); DAF goes to the Give page DAF section (Mike, 2026-10-11); Tributes off and Give cryptocurrency added (Mike, 2026-10-11); Give stock wording matches DonateStock's online flow (Mike, 2026-10-13); Give stock goes to DonateStock's Easy Button donation page (Mike, 2026-10-21); DAF and Give cryptocurrency go straight to DonateStock, like Give stock (Mike, 2026-10-21)",
+      "source": "FB-022 (Give is the primary call to action, in the top bar); FB-024 wording (Mike, 2026-10-08); QCD uses the IRS term (Mike, 2026-10-09); DAF goes to the Give page DAF section (Mike, 2026-10-11); Tributes off and Give cryptocurrency added (Mike, 2026-10-11); Give stock wording matches DonateStock's online flow (Mike, 2026-10-13); Give stock goes to DonateStock's Easy Button donation page (Mike, 2026-10-21); DAF and Give cryptocurrency go straight to DonateStock, like Give stock (Mike, 2026-10-21); Give securely online goes to Qgiv (Mike, 2026-11-05)",
       "items": [
-        { "label": "Give securely online", "description": "Your donation matters", "href": { "fundraiseUpForm": "FUNYXMNPKXG" } },
+        { "label": "Give securely online", "description": "Your donation matters", "href": { "external": "https://secure.qgiv.com/for/giveproxima" } },
         { "label": "Donor-Advised Fund (DAF)", "description": "Make a contribution from your DAF", "href": { "external": "https://donatestock.com/donate/new/daf?ds_platform=easydaf&ein=334450216" } },
         { "label": "Qualified Charitable Distribution (QCD)", "description": "Give from your qualified retirement funds", "href": { "app": "main", "path": "/give/qcd" } },
         { "label": "Give stock", "description": "Fill out a short form online and DonateStock sends the transfer request to your broker.", "href": { "external": "https://donatestock.com/donate/new/?ds_platform=easybutton&ein=334450216" } },
@@ -72,16 +72,16 @@
     ],
     "give": {
       "label": "Give",
-      "href": { "app": "main", "path": "/give" },
+      "href": { "external": "https://secure.qgiv.com/for/giveproxima" },
       "style": "quiet: Teal semibold text link after the policy links",
-      "source": "Footer giving touchpoint, storyboard v2.0 (approved by Mike, 2026-10-05); restored in 2.2.1 (Mike, 2026-10-10)"
+      "source": "Footer giving touchpoint, storyboard v2.0 (approved by Mike, 2026-10-05); restored in 2.2.1 (Mike, 2026-10-10); direct Qgiv destination approved by Mike (2026-11-05)"
     },
     "meta": "© {year} Proxima Partners, Inc."
   },
   "rules": [
     "Every page at liveproxima.org, in either app, renders this header and footer with the same labels, order, destinations, tokens and behavior.",
     "Links into the other app are root-relative on the same domain. Nothing opens a new tab except external giving and Candid links.",
-    "The Give menu needs the Fundraise Up loader on every page that shows it, so fundraiseUpForm items open checkout in place.",
+    "Give securely online and the footer Give link open Proxima's secure Qgiv page in a new tab.",
     "A site may append its own version label after the footer meta line. Nothing else is site-specific."
   ]
 }
