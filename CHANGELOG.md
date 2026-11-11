@@ -2,6 +2,16 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.6.0 - 2026-11-10
+
+Brand System: v4.0.1 (`10-Site-Chrome/navigation.json`; tokens from `03-Design-Tokens`).
+
+- Header and footer are stamped Brand System 4.0.1.
+- The Proxima San Francisco lockup is the primary organizational logo; the former Proxima Partners mark is legacy.
+- All tint steps are screen only and have no approved CMYK substitutions. The shell's visible chrome, labels and destinations are unchanged.
+
+Consumer impact: version stamps and mirrored brand guidance only; no prop, markup-structure, CSS, label or link change. Both consumers must pin this release together. Rollback: 0.5.5 at `e66649d`.
+
 ## 0.5.5 - 2026-11-05
 
 Brand System: v3.1.4 (`10-Site-Chrome/navigation.json`).

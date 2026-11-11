@@ -1,11 +1,11 @@
 {
   "source": "https://github.com/Proxima-Partners/Proxima-Brand-System",
-  "version": "3.1.4",
-  "tag": "v3.1.4",
-  "commit": "4c567cd962452c895cc8497d184f0866b7354672",
-  "syncedAt": "2026-11-06T03:47:15.677Z",
+  "version": "4.0.1",
+  "tag": "v4.0.1",
+  "commit": "3256c583cedac6bac13434f38e59ed6062a328b7",
+  "syncedAt": "2026-11-11T00:57:06.666Z",
   "files": {
-    "brand/site-chrome/navigation.json": "07f17ec53ffc49d716e916e726faa58ca5bf3b04c25cdf2d5bd092b37f8bf581",
-    "brand/tokens/tokens.json": "558e41ae6cb027bf319ef21d377fa461d8eb7ad03f07cf694fb1148d6ee187b2"
+    "brand/site-chrome/navigation.json": "05f6e96ab31ec5999092ddac292b232d1fc961d02786738bc174c8496f353dc9",
+    "brand/tokens/tokens.json": "c194fad4351105d8ffdf0428efc46d5037bcc6934cc94449aeebc50d07ea3256"
   }
 }
