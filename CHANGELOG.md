@@ -2,6 +2,15 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.7.0 - 2026-11-10
+
+Brand System: v5.0.2 (`10-Site-Chrome/navigation.json`; tokens from `03-Design-Tokens`).
+
+- Header and footer are stamped Brand System 5.0.2.
+- The release carries the approved Illustrator-derived Proxima San Francisco lockup authority and corrected release metadata; shared chrome labels, destinations, token values and component behavior are unchanged.
+
+Consumer impact: version stamps and mirrored brand authority only; no prop, markup-structure, CSS, label or link change. Both consumers must pin this release together. Rollback: 0.6.0 at `bcaac7c`.
+
 ## 0.6.0 - 2026-11-10
 
 Brand System: v4.0.1 (`10-Site-Chrome/navigation.json`; tokens from `03-Design-Tokens`).
