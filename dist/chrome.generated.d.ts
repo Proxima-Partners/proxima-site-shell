@@ -1,5 +1,5 @@
 export declare const chrome: {
-    readonly version: "5.0.3";
+    readonly version: "5.0.4";
     readonly domain: "https://liveproxima.org";
     readonly apps: {
         readonly main: {
@@ -90,7 +90,7 @@ export declare const chrome: {
     readonly sectionBars: {
         readonly cafe: {
             readonly label: "Proxima Cafe";
-            readonly source: "Cafe stays visible only as a section name (Mike, 2026-10-10)";
+            readonly source: "Cafe stays visible only as a section name (Mike, 2026-10-10); Blog and Articles renamed City Notes and Slow Reads (Mike, 2026-11-12)";
             readonly items: readonly [{
                 readonly label: "Proxima Cafe";
                 readonly href: {
@@ -98,13 +98,13 @@ export declare const chrome: {
                     readonly path: "/";
                 };
             }, {
-                readonly label: "Blog";
+                readonly label: "City Notes";
                 readonly href: {
                     readonly app: "cafe";
                     readonly path: "/blog";
                 };
             }, {
-                readonly label: "Articles";
+                readonly label: "Slow Reads";
                 readonly href: {
                     readonly app: "cafe";
                     readonly path: "/articles";
@@ -162,7 +162,7 @@ export declare const chrome: {
     readonly rules: readonly ["Every page at liveproxima.org, in either app, renders this header and footer with the same labels, order, destinations, tokens and behavior.", "Links into the other app are root-relative on the same domain. Nothing opens a new tab except external giving and Candid links.", "Give securely online and the footer Give link open Proxima's secure Qgiv page in a new tab.", "A site may append its own version label after the footer meta line. Nothing else is site-specific."];
 };
 /** The Brand System release the header and footer come from. */
-export declare const brandVersion = "5.0.3";
+export declare const brandVersion = "5.0.4";
 /** This package's version, stamped on the header and footer as data-proxima-shell-version. */
-export declare const shellVersion = "0.7.0";
+export declare const shellVersion = "0.8.0";
 //# sourceMappingURL=chrome.generated.d.ts.map

@@ -39,7 +39,7 @@ test('links stay on liveproxima.org: root-relative in both apps, cafe under /caf
   assert.deepEqual(resolveProximaLink(stories, 'cafe'), { link: stories, href: '/cafe', sameApp: true, appPath: '/' })
   assert.equal(resolveProximaLink(about, 'cafe').href, '/#about')
   assert.equal(resolveProximaLink(about, 'main').appPath, '/#about')
-  const blog = chrome.sectionBars.cafe.items.find((link) => link.label === 'Blog')
+  const blog = chrome.sectionBars.cafe.items.find((link) => link.label === 'City Notes')
   assert.equal(resolveProximaLink(blog, 'cafe').href, '/cafe/blog')
   assert.equal(resolveProximaLink(blog, 'cafe').appPath, '/blog')
 })
@@ -76,7 +76,7 @@ test('the Give menu says Give stock, filled out online (Brand System 2.4.1)', ()
 })
 
 test('marks the current page only inside its own app', () => {
-  const blog = chrome.sectionBars.cafe.items.find((link) => link.label === 'Blog')
+  const blog = chrome.sectionBars.cafe.items.find((link) => link.label === 'City Notes')
   assert.equal(proximaLinkIsCurrent(blog, 'cafe', '/blog'), true)
   assert.equal(proximaLinkIsCurrent(blog, 'cafe', '/blog/a-story'), true)
   assert.equal(proximaLinkIsCurrent(blog, 'main', '/blog'), false)
@@ -108,5 +108,6 @@ test('the header and footer render the same markup in both apps, stamped with bo
 test('the cafe section bar names the cafe and links inside /cafe', () => {
   const html = renderToStaticMarkup(h(ProximaSectionBar, { section: 'cafe', currentApp: 'cafe', currentPath: '/articles' }))
   assert.match(html, /aria-label="Proxima Cafe"/)
-  assert.match(html, /href="\/cafe\/articles" aria-current="page">Articles</)
+  assert.match(html, /href="\/cafe\/blog">City Notes</)
+  assert.match(html, /href="\/cafe\/articles" aria-current="page">Slow Reads</)
 })
