@@ -2,6 +2,16 @@
 
 All notable site-shell changes are recorded here. A release entry identifies its Brand System release, consumer impact, migration requirements and the tested rollback version.
 
+## 0.8.0 - 2026-11-12
+
+Brand System: v5.0.4 (`10-Site-Chrome/navigation.json`; tokens from `03-Design-Tokens`).
+
+- Renames the Proxima Cafe section-bar label **Blog** to **City Notes**.
+- Renames **Articles** to **Slow Reads**.
+- Preserves the existing `/blog` and `/articles` destinations, component props, markup structure and styles.
+
+Consumer impact: visible Cafe section-bar labels only. Both consumers must pin this release together. Rollback: 0.7.0 at `6ac3176`.
+
 ## 0.7.0 - 2026-11-10
 
 Brand System: v5.0.3 (`10-Site-Chrome/navigation.json`; tokens from `03-Design-Tokens`).
